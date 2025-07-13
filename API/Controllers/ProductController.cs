@@ -75,3 +75,12 @@ public class ProductController : ControllerBase
         return context.Products.Any(x => x.Id == id);
     }
 }
+
+
+
+
+
+
+
+
+
