@@ -2,6 +2,7 @@ using System;
 using Core.Entities;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
@@ -69,7 +70,7 @@ public class ProductController : ControllerBase
 
         return NoContent();       
     }
-
+   
     private bool ProductExists(int id)
     {
         return context.Products.Any(x => x.Id == id);
