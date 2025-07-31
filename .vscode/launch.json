@@ -1,0 +1,34 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core Launch API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/API/bin/Debug/net8.0/API.dll",  // ✅ Fixed
+      "args": [],
+      "cwd": "${workspaceFolder}/API",                               // ✅ Fixed
+      "console": "integratedTerminal",
+      "stopAtEntry": false,
+      "justMyCode": true,
+      "internalConsoleOptions": "neverOpen",
+      "logging": {
+        "moduleLoad": false,
+        "engineLogging": false,
+        "programOutput": true
+      }
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach",
+      "justMyCode": true,
+      "logging": {
+        "moduleLoad": false,
+        "engineLogging": false,
+        "programOutput": true
+      }
+    }
+  ]
+}
