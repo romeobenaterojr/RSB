@@ -3,11 +3,9 @@ using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-
-
+// Add services
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StoreContext>(opt =>
 {
@@ -16,18 +14,28 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddCors();
 
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200", "https://localhost:4200") // Angular dev server
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
 
 app.UseMiddleware<ExceptionMiddleware>();
 
-app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200", "https://localhost:4200"));
-//app.UseCors("CorsPolicy");
+
+app.UseHttpsRedirection();
+
+app.UseCors("CorsPolicy");
+
 app.MapControllers();
 
 try
@@ -37,7 +45,6 @@ try
     var context = services.GetRequiredService<StoreContext>();
     await context.Database.MigrateAsync();
     await StoreContextSeed.SeedAsync(context);
-
 }
 catch (Exception ex)
 {
