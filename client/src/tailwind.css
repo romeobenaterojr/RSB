@@ -4,5 +4,9 @@
 @tailwind utilities;
 
 .container {
-    @apply mx-auto max-w-screen-2xl
+    @apply mx-auto max-w-screen-2xl !important;
+}
+
+.text-primary {
+    @apply text-blue-700;
 }
