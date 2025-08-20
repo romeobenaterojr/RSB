@@ -60,7 +60,7 @@ export class ShopComponent implements OnInit {
  }
 
  getProducts() {
-   this.shopService.getProduct(this.shopParams).subscribe({
+   this.shopService.getProducts(this.shopParams).subscribe({
      next: response => this.products = response, 
     error: error => console.error(error)
     });
