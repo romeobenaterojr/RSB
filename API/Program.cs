@@ -1,4 +1,5 @@
 using API.Middleware;
+using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Services;
@@ -24,6 +25,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:4200", "https://localhost:4200") // Angular dev server
               .AllowAnyHeader()
+              .AllowCredentials()
               .AllowAnyMethod();
     });
 });
@@ -36,6 +38,10 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
 
 });
 builder.Services.AddSingleton<ICartService, CartService>();
+builder.Services.AddAuthorization();
+builder.Services.AddIdentityApiEndpoints<AppUser>()
+    .AddEntityFrameworkStores<StoreContext>();
+
 
 var app = builder.Build();
 
@@ -48,6 +54,8 @@ app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 
 app.MapControllers();
+app.MapGroup("api").MapIdentityApi<AppUser>();
+
 
 try
 {
