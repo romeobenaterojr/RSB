@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:4200", "https://localhost:4200") // Angular dev server
+        policy.WithOrigins("http://localhost:4200", "https://localhost:4200") 
               .AllowAnyHeader()
               .AllowCredentials()
               .AllowAnyMethod();
@@ -52,6 +52,8 @@ app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseCors("CorsPolicy");
+app.UseAuthentication(); 
+app.UseAuthorization(); 
 
 app.MapControllers();
 app.MapGroup("api").MapIdentityApi<AppUser>();

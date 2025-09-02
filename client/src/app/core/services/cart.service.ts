@@ -9,6 +9,9 @@ import { map } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
+  getUserInfo(): any {
+    throw new Error('Method not implemented.');
+  }
   baseUrl = environment.apiUrl; 
   private http = inject(HttpClient);
   cart = signal<Cart | null>(null);
@@ -78,13 +81,14 @@ export class CartService {
   }
 
   deleteCart() {
-    this.http.delete(this.baseUrl + 'cart?id' + this.cart()?.id).subscribe({
+    this.http.delete(this.baseUrl + 'cart?id=' + this.cart()?.id).subscribe({
      next: () => {
       localStorage.removeItem('cart_id');
       this.cart.set(null);
      } 
     })
   }
+  
 
   private addOrUpdateItem(items: CartItem[], item: CartItem, quantity: number): CartItem[] {
     const index = items.findIndex(x => x.productId === item.productId);

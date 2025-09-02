@@ -18,8 +18,8 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
     {
         var user = new AppUser
         {
-            FirstName = registerDto.Firstname,
-            LastName = registerDto.Lastname,
+            FirstName = registerDto.FirstName,
+            LastName = registerDto.LastName,
             Email = registerDto.Email,
             UserName = registerDto.Email
         };
@@ -67,7 +67,7 @@ public class AccountController(SignInManager<AppUser> signInManager) : BaseApiCo
 
     }
 
-    [HttpGet]
+    [HttpGet("auth-status")]
     public ActionResult GetAuthState()
     {
         return Ok(new { IsAuthenticated = User.Identity?.IsAuthenticated ?? false });
