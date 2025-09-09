@@ -41,7 +41,6 @@ C:\RSB\API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
 C:\RSB\API\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\RSB\API\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\RSB\API\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
-C:\RSB\API\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\RSB\API\bin\Debug\net8.0\Mono.TextTemplating.dll
 C:\RSB\API\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
 C:\RSB\API\bin\Debug\net8.0\StackExchange.Redis.dll
@@ -54,17 +53,14 @@ C:\RSB\API\bin\Debug\net8.0\System.Composition.Runtime.dll
 C:\RSB\API\bin\Debug\net8.0\System.Composition.TypedParts.dll
 C:\RSB\API\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\RSB\API\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
-C:\RSB\API\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\RSB\API\bin\Debug\net8.0\System.Formats.Asn1.dll
 C:\RSB\API\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\RSB\API\bin\Debug\net8.0\System.IO.Pipelines.dll
 C:\RSB\API\bin\Debug\net8.0\System.Memory.Data.dll
 C:\RSB\API\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\RSB\API\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
-C:\RSB\API\bin\Debug\net8.0\System.Security.Permissions.dll
 C:\RSB\API\bin\Debug\net8.0\System.Text.Encodings.Web.dll
 C:\RSB\API\bin\Debug\net8.0\System.Text.Json.dll
-C:\RSB\API\bin\Debug\net8.0\System.Windows.Extensions.dll
 C:\RSB\API\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\RSB\API\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\RSB\API\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -136,13 +132,8 @@ C:\RSB\API\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI
 C:\RSB\API\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\RSB\API\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\RSB\API\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\RSB\API\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\RSB\API\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-C:\RSB\API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\RSB\API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
-C:\RSB\API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\RSB\API\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
-C:\RSB\API\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\RSB\API\bin\Debug\net8.0\Core.dll
 C:\RSB\API\bin\Debug\net8.0\Infrastructure.dll
 C:\RSB\API\bin\Debug\net8.0\Infrastructure.pdb
@@ -172,3 +163,5 @@ C:\RSB\API\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\RSB\API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\RSB\API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\RSB\API\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\RSB\API\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\RSB\API\bin\Debug\net8.0\Stripe.net.dll
