@@ -31,6 +31,11 @@ public class GenericRepository<T>(StoreContext context) : IGenericRepository<T> 
         return await context.Set<T>().FindAsync(id);
     }
 
+    public Task GetByIdAsync(object deliveryMethodId)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<T?> GetEntityWithSpec(ISpecification<T> spec)
     {
         return await ApplySpecification(spec).FirstOrDefaultAsync();
@@ -61,10 +66,6 @@ public class GenericRepository<T>(StoreContext context) : IGenericRepository<T> 
         context.Set<T>().Remove(entity);
     }
 
-    public async Task<bool> SaveaAllAsync()
-    {
-        return await context.SaveChangesAsync() > 0;
-    }
 
     public void Update(T entity)
     {

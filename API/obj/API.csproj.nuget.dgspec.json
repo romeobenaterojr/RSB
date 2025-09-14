@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\RSB\\API\\API.csproj": {}
+    "C:\\RSB\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\RSB\\API\\API.csproj": {
+    "C:\\RSB\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\RSB\\API\\API.csproj",
+        "projectUniqueName": "C:\\RSB\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\RSB\\API\\API.csproj",
+        "projectPath": "C:\\RSB\\api\\API.csproj",
         "packagesPath": "C:\\Users\\63946\\.nuget\\packages\\",
-        "outputPath": "C:\\RSB\\API\\obj\\",
+        "outputPath": "C:\\RSB\\api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 23.2\\Components\\Offline Packages",
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -171,7 +171,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -262,7 +262,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.413/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

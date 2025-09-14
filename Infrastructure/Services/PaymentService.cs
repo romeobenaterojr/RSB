@@ -11,9 +11,8 @@ namespace Infrastructure.Services;
 
 public class PaymentService(
     IConfiguration config,
-    IGenericRepository<Core.Entities.Product> productRepo, 
-    ICartService cartService,
-    IGenericRepository<DeliveryMethod> dmRepo
+    IUnitOfWork unit,
+    ICartService cartService
 ) : IPaymentService
 {
     public async Task<ShoppingCart?> CreateOrUpdatePaymentIntent(string cartId)
@@ -27,7 +26,7 @@ public class PaymentService(
 
         if (cart.DeliveryMethodId.HasValue)
         {
-            var deliveryMethod = await dmRepo.GetByIdAsync(cart.DeliveryMethodId.Value);
+            var deliveryMethod = await unit.Repository<DeliveryMethod>().GetByIdAsync(cart.DeliveryMethodId.Value);
             if (deliveryMethod == null) return null;
             shippingPrice = deliveryMethod.Price;
         }
@@ -35,7 +34,7 @@ public class PaymentService(
         // Ensure item prices are up-to-date
         foreach (var item in cart.Items)
         {
-            var productItem = await productRepo.GetByIdAsync(item.ProductId);
+            var productItem = await unit.Repository<Core.Entities.Product>().GetByIdAsync(item.ProductId);
             if (productItem == null) return null;
 
             if (item.Price != productItem.Price)
@@ -53,7 +52,7 @@ public class PaymentService(
         var service = new PaymentIntentService();
         PaymentIntent? intent = null;
 
-        if (string.IsNullOrEmpty(cart.PaymentIndentId))
+        if (string.IsNullOrEmpty(cart.PaymentIntentId))
         {
             var options = new PaymentIntentCreateOptions
             {
@@ -63,7 +62,7 @@ public class PaymentService(
             };
 
             intent = await service.CreateAsync(options);
-            cart.PaymentIndentId = intent.Id;
+            cart.PaymentIntentId = intent.Id;
             cart.ClientSecret = intent.ClientSecret;
         }
         else
@@ -73,7 +72,7 @@ public class PaymentService(
                 Amount = amountInCentavos
             };
 
-            intent = await service.UpdateAsync(cart.PaymentIndentId, options);
+            intent = await service.UpdateAsync(cart.PaymentIntentId, options);
         }
 
         await cartService.SetCartAsync(cart);
