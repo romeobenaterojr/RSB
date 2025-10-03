@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +16,12 @@ public class PaymentService(
 {
     public async Task<ShoppingCart?> CreateOrUpdatePaymentIntent(string cartId)
     {
-        StripeConfiguration.ApiKey = config["StripeSettings:SecretKey"];
+        if (string.IsNullOrEmpty(cartId))
+            throw new ArgumentException("CartId cannot be null or empty", nameof(cartId));
+
+        // Set Stripe API key
+        StripeConfiguration.ApiKey = config["StripeSettings:SecretKey"]
+            ?? throw new InvalidOperationException("Stripe secret key is missing");
 
         var cart = await cartService.GetCartAsync(cartId);
         if (cart == null) return null;
@@ -43,14 +47,14 @@ public class PaymentService(
 
         var totalAmount = cart.Items.Sum(x => x.Quantity * x.Price) + shippingPrice;
 
-        // Stripe requires a minimum of 50 centavos in PHP
+        // Stripe requires a minimum amount (50 centavos PHP)
         if (totalAmount < 0.5m)
             totalAmount = 0.5m;
 
         var amountInCentavos = (long)(totalAmount * 100);
 
         var service = new PaymentIntentService();
-        PaymentIntent? intent = null;
+        PaymentIntent intent;
 
         if (string.IsNullOrEmpty(cart.PaymentIntentId))
         {
@@ -58,10 +62,12 @@ public class PaymentService(
             {
                 Amount = amountInCentavos,
                 Currency = "php",
-                PaymentMethodTypes = ["card"]
+                PaymentMethodTypes = new List<string> { "card" }
             };
 
             intent = await service.CreateAsync(options);
+
+            // Save PaymentIntent info to cart
             cart.PaymentIntentId = intent.Id;
             cart.ClientSecret = intent.ClientSecret;
         }
@@ -76,6 +82,7 @@ public class PaymentService(
         }
 
         await cartService.SetCartAsync(cart);
+
         return cart;
     }
 }

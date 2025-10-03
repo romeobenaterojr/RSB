@@ -59,6 +59,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "target": "Package",
               "version": "[9.0.7, )"
@@ -66,6 +70,10 @@
             "StackExchange.Redis": {
               "target": "Package",
               "version": "[2.9.11, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[48.6.0-beta.1, )"
             }
           },
           "imports": [

@@ -31,7 +31,7 @@ public static class OrderMappingExtension
         {
             ProductId = orderItem.ItemOrdered.ProductId,
             ProductName = orderItem.ItemOrdered.ProductName,
-            PicureUrl = orderItem.ItemOrdered.PictureUrl,
+            PictureUrl = orderItem.ItemOrdered.PictureUrl,
             Price = orderItem.Price,
             Quantity = orderItem.Quantity
         };

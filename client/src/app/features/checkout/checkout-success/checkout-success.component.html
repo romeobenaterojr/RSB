@@ -1,31 +1,46 @@
-<section class="bg-white py-16">
-    <div class="mx-auto max-w-2xl px-4">
-        <div class="space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6 mb-8">
-            <h2 class="font-semibold text-2xl mb-2">Thanks for your fake order</h2>
-            <p class="text-gray-500 mb-8">Your Oder <span class="font-medium">#42</span>
-                will never be process as this is a fake shop. we will not notify you once your order has not shipped.
-            </p>
-            <dl class="flex items-center justify-between gap-4">
-                <dt class="font-normal text-gray-500">Date</dt>
-                <dd class="font-medium text-gray-900 text-end">Sept 9 2025</dd>
-            </dl>
-            <dl class="flex items-center justify-between gap-4">
-                <dt class="font-normal text-gray-500">Payment</dt>
-                <dd class="font-medium text-gray-900 text-end">Visa</dd>
-            </dl>
-            <dl class="flex items-center justify-between gap-4">
-                <dt class="font-normal text-gray-500">Address</dt>
-                <dd class="font-medium text-gray-900 text-end">Address goes here</dd>
-            </dl>
-            <dl class="flex items-center justify-between gap-4">
-                <dt class="font-normal text-gray-500">Amount</dt>
-                <dd class="font-medium text-gray-900 text-end">100</dd>
-            </dl>
-        </div>
-        <div class="flex items-center space-x-4">
-            <button routerLink="/order/42" mat-flat-button>View your Order</button>
-            <button routerLink="/order/42" mat-stroked-button>Continue Shopping</button>
-        </div>
-    
+<section class="bg-white py-16" *ngIf="order$ | async as order; else loading">
+  <div class="mx-auto max-w-2xl px-4">
+    <div class="space-y-2 rounded-lg border border-gray-100 bg-gray-50 p-6 mb-8">
+      <h2 class="font-semibold text-2xl mb-2">Thanks for your fake order</h2>
+      <p class="text-gray-500 mb-8">
+        #{{order.id}} <span class="font-medium">#42</span>
+        will never be processed as this is a fake shop.
+      </p>
+
+      <dl class="flex items-center justify-between gap-4">
+        <dt class="font-normal text-gray-500">Date</dt>
+        <dd class="font-medium text-gray-900 text-end">{{order.orderDate | date:'medium'}}</dd>
+      </dl>
+
+      <dl class="flex items-center justify-between gap-4">
+        <dt class="font-normal text-gray-500">Payment</dt>
+        <dd class="font-medium text-gray-900 text-end">{{order.paymentSummary | paymentCard}}</dd>
+      </dl>
+
+      <dl class="flex items-center justify-between gap-4">
+        <dt class="font-normal text-gray-500">Address</dt>
+        <dd class="font-medium text-gray-900 text-end">{{order.shippingAddress | address}}</dd>
+      </dl>
+
+      <dl class="flex items-center justify-between gap-4">
+        <dt class="font-normal text-gray-500">Amount</dt>
+        <dd class="font-medium text-gray-900 text-end">{{order.total | currency:'PHP':'symbol':'1.2-2' }}</dd>
+      </dl>
     </div>
+
+    <div class="flex items-center space-x-4">
+      <button routerLink="/orders/{{order.id}}" mat-flat-button>View your Order</button>
+      <button routerLink="/shop" mat-stroked-button>Continue Shopping</button>
+    </div>
+  </div>
 </section>
+
+<ng-template #loading>
+  <section class="bg-white py-16">
+    <div class="mx-auto max-w-2xl px-4 flex flex-col items-center justify-center">
+      <mat-spinner diameter="30"></mat-spinner>
+      <p class="text-xl mt-4">Loading order...</p>
+      <span>Your payment has been received, we are creating the order</span>
+    </div>
+  </section>
+</ng-template>

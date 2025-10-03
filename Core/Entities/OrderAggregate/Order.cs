@@ -4,7 +4,7 @@ namespace Core.Entities.OrderAggregate;
 
 public class Order : BaseEntity
 {
-    public DateTime OrderDate { get; set; }
+    public DateTime OrderDate { get; set; } = DateTime.UtcNow;
     public required string BuyerEmail { get; set; }
     public ShippingAddress ShippingAddress { get; set; } = null!;
     public DeliveryMethod DeliveryMethod { get; set; } = null!;

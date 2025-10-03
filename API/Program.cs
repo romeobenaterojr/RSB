@@ -1,4 +1,5 @@
 using API.Middleware;
+using API.SignalR;
 using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
@@ -8,8 +9,9 @@ using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services
+// -------------------- Services --------------------
 builder.Services.AddControllers();
+
 builder.Services.AddDbContext<StoreContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -23,47 +25,56 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:4200", "https://localhost:4200") 
+        policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
               .AllowAnyHeader()
-              .AllowCredentials()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
 {
-    var connString = builder.Configuration.GetConnectionString("Redis") ?? throw new Exception("Cannot get redis connection string");
+    var connString = builder.Configuration.GetConnectionString("Redis")
+        ?? throw new Exception("Cannot get redis connection string");
+
     var configuration = ConfigurationOptions.Parse(connString, true);
     return ConnectionMultiplexer.Connect(configuration);
-
 });
+
 builder.Services.AddSingleton<ICartService, CartService>();
-builder.Services.AddAuthorization();
+
+// Identity + EF
 builder.Services.AddIdentityApiEndpoints<AppUser>()
     .AddEntityFrameworkStores<StoreContext>();
-builder.Services.AddScoped<IPaymentService, PaymentService>();
 
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddSignalR();
+
+// -------------------- Build App --------------------
 var app = builder.Build();
 
-
+// -------------------- Middleware --------------------
 app.UseMiddleware<ExceptionMiddleware>();
-
-
 app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseCors("CorsPolicy");
-app.UseAuthentication(); 
-app.UseAuthorization(); 
 
+// ✅ Enable authentication & authorization
+app.UseAuthentication();
+app.UseAuthorization();
+
+// -------------------- Endpoints --------------------
 app.MapControllers();
 app.MapGroup("api").MapIdentityApi<AppUser>();
+app.MapHub<NotificationHub>("/hub/notifications");
 
-
+// -------------------- DB Migration + Seeding --------------------
 try
 {
     using var scope = app.Services.CreateScope();
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<StoreContext>();
+
     await context.Database.MigrateAsync();
     await StoreContextSeed.SeedAsync(context);
 }
@@ -74,4 +85,3 @@ catch (Exception ex)
 }
 
 app.Run();
-

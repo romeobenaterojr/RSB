@@ -1,3 +1,9 @@
+C:\RSB\api\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
+C:\RSB\api\obj\Debug\net8.0\API.GeneratedMSBuildEditorConfig.editorconfig
+C:\RSB\api\obj\Debug\net8.0\API.AssemblyInfoInputs.cache
+C:\RSB\api\obj\Debug\net8.0\API.AssemblyInfo.cs
+C:\RSB\api\obj\Debug\net8.0\API.csproj.CoreCompileInputs.cache
+C:\RSB\api\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cache
 C:\RSB\api\bin\Debug\net8.0\appsettings.Development.json
 C:\RSB\api\bin\Debug\net8.0\appsettings.json
 C:\RSB\api\bin\Debug\net8.0\API.exe
@@ -145,12 +151,6 @@ C:\RSB\api\bin\Debug\net8.0\Core.dll
 C:\RSB\api\bin\Debug\net8.0\Infrastructure.dll
 C:\RSB\api\bin\Debug\net8.0\Infrastructure.pdb
 C:\RSB\api\bin\Debug\net8.0\Core.pdb
-C:\RSB\api\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
-C:\RSB\api\obj\Debug\net8.0\API.GeneratedMSBuildEditorConfig.editorconfig
-C:\RSB\api\obj\Debug\net8.0\API.AssemblyInfoInputs.cache
-C:\RSB\api\obj\Debug\net8.0\API.AssemblyInfo.cs
-C:\RSB\api\obj\Debug\net8.0\API.csproj.CoreCompileInputs.cache
-C:\RSB\api\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cache
 C:\RSB\api\obj\Debug\net8.0\staticwebassets.build.json
 C:\RSB\api\obj\Debug\net8.0\staticwebassets.development.json
 C:\RSB\api\obj\Debug\net8.0\staticwebassets\msbuild.API.Microsoft.AspNetCore.StaticWebAssets.props
@@ -165,3 +165,4 @@ C:\RSB\api\obj\Debug\net8.0\refint\API.dll
 C:\RSB\api\obj\Debug\net8.0\API.pdb
 C:\RSB\api\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\RSB\api\obj\Debug\net8.0\ref\API.dll
+C:\RSB\api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
