@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\RSB\\api\\API.csproj": {}
+    "C:\\RSB\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\RSB\\api\\API.csproj": {
+    "C:\\RSB\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\RSB\\api\\API.csproj",
+        "projectUniqueName": "C:\\RSB\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\RSB\\api\\API.csproj",
+        "projectPath": "C:\\RSB\\API\\API.csproj",
         "packagesPath": "C:\\Users\\63946\\.nuget\\packages\\",
-        "outputPath": "C:\\RSB\\api\\obj\\",
+        "outputPath": "C:\\RSB\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 23.2\\Components\\Offline Packages",

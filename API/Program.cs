@@ -62,11 +62,14 @@ app.UseCors("CorsPolicy");
 // ✅ Enable authentication & authorization
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 // -------------------- Endpoints --------------------
 app.MapControllers();
 app.MapGroup("api").MapIdentityApi<AppUser>();
 app.MapHub<NotificationHub>("/hub/notifications");
+app.MapFallbackToController("Index", "Fallback");
 
 // -------------------- DB Migration + Seeding --------------------
 try

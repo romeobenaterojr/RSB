@@ -166,3 +166,7 @@ C:\RSB\api\obj\Debug\net8.0\API.pdb
 C:\RSB\api\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\RSB\api\obj\Debug\net8.0\ref\API.dll
 C:\RSB\api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\RSB\API\bin\Debug\net8.0\Data\SeedData\delivery.json
+C:\RSB\API\bin\Debug\net8.0\Data\SeedData\products.json
+C:\RSB\API\bin\Debug\net8.0\API.staticwebassets.runtime.json
+C:\RSB\API\obj\Debug\net8.0\API.sourcelink.json

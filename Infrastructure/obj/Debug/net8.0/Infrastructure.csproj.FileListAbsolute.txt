@@ -13,3 +13,6 @@ C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.dll
 C:\RSB\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
 C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 C:\RSB\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
+C:\RSB\Infrastructure\bin\Debug\net8.0\Data\SeedData\delivery.json
+C:\RSB\Infrastructure\bin\Debug\net8.0\Data\SeedData\products.json
+C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json
