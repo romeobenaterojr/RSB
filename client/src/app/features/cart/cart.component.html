@@ -17,7 +17,12 @@
 
   
     } @else {
-        <app-empty-state></app-empty-state>
+        <app-empty-state
+        message="Your Shopping cart is Empty"
+        icon="remove_shopping_cart"
+        actionText="Go to Shop"
+        (action)="onAction()"
+        />
     }
 
     
