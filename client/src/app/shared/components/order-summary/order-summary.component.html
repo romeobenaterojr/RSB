@@ -25,7 +25,7 @@
         <dl class="flex items-center justify-between gap-4">
           <dt class="font-medium text-gray-500">Delivery Fee</dt>
           <dd class="font-medium text-gray-900">
-            {{ totals.shipping | currency:'PHP':'symbol':'1.2-2' }}
+           {{ totals.deliveryFee | currency:'PHP':'symbol':'1.2-2' }}
           </dd>
         </dl>
 
@@ -49,17 +49,27 @@
 
   <!-- Voucher Code Form -->
   <div class="space-y-4 rounded-lg border border-gray-200 bg-white shadow-sm p-4">
-    <form class="space-y-2 flex flex-col">
-      <label class="mb-2 block text-sm font-medium">
-        Do you have a voucher code?
-      </label>
-
-      <mat-form-field appearance="outline">
+      <form #form="ngForm" (ngSubmit)="applyCouponCode()"
+        class="space-y-2 flex flex-col p-2">
+        <label class="mb-2 block text-sm font-medium">Do you have a voucher
+        code?</label>
+        @if (cartService.cart()?.coupon; as coupon) {
+        <div class="flex justify-between items-center">
+        <span class="text-sm font-semibold">{{coupon.name}} applied</span>
+        <button (click)="removeCouponCode()" mat-icon-button>
+        <mat-icon color="warn">delete</mat-icon>
+        </button>
+        </div>
+        }
+        <mat-form-field appearance="outline">
         <mat-label>Voucher code</mat-label>
-        <input type="text" matInput>
-      </mat-form-field>
-
-      <button mat-flat-button>Apply Code</button>
-    </form>
+        <input [disabled]="!!cartService.cart()?.coupon" [(ngModel)]="code"
+        name="code" type="text" matInput>
+        </mat-form-field>
+        <button
+        [disabled]="!!cartService.cart()?.coupon"
+        type="submit"
+        mat-flat-button>Apply code</button>
+      </form>
   </div>
 </div>

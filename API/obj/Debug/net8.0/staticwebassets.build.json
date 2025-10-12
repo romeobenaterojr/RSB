@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4FklGVOVHVMb0tgtcuITGNciMQC4mLztdYQiEuBDENo=",
+  "Hash": "p0JrnAQESA4v1JOb/ydciJ7H9zfjrj2MuXToyLTxoR8=",
   "Source": "API",
   "BasePath": "_content/API",
   "Mode": "Default",
@@ -530,12 +530,12 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\RSB\\API\\wwwroot\\main-K5AMJ2F2.js",
+      "Identity": "C:\\RSB\\API\\wwwroot\\main-NWJYARWQ.js",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\RSB\\API\\wwwroot\\",
       "BasePath": "_content/API",
-      "RelativePath": "main-K5AMJ2F2.js",
+      "RelativePath": "main-NWJYARWQ.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -546,7 +546,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\main-K5AMJ2F2.js"
+      "OriginalItemSpec": "wwwroot\\main-NWJYARWQ.js"
     },
     {
       "Identity": "C:\\RSB\\API\\wwwroot\\polyfills-B6TNHZQ6.js",
@@ -587,12 +587,12 @@
       "OriginalItemSpec": "wwwroot\\prerendered-routes.json"
     },
     {
-      "Identity": "C:\\RSB\\API\\wwwroot\\styles-ICLQRHRB.css",
+      "Identity": "C:\\RSB\\API\\wwwroot\\styles-KS624BKY.css",
       "SourceId": "API",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\RSB\\API\\wwwroot\\",
       "BasePath": "_content/API",
-      "RelativePath": "styles-ICLQRHRB.css",
+      "RelativePath": "styles-KS624BKY.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -603,7 +603,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\styles-ICLQRHRB.css"
+      "OriginalItemSpec": "wwwroot\\styles-KS624BKY.css"
     }
   ]
 }
