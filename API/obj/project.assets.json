@@ -4704,6 +4704,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Core >= 1.0.0",
       "Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.7",
@@ -4721,11 +4722,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\RSB\\api\\API.csproj",
+      "projectUniqueName": "C:\\RSB\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\RSB\\api\\API.csproj",
+      "projectPath": "C:\\RSB\\API\\API.csproj",
       "packagesPath": "C:\\Users\\63946\\.nuget\\packages\\",
-      "outputPath": "C:\\RSB\\api\\obj\\",
+      "outputPath": "C:\\RSB\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\DevExpress 23.2\\Components\\Offline Packages",
@@ -4752,6 +4753,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "C:\\RSB\\Core\\Core.csproj": {
+              "projectPath": "C:\\RSB\\Core\\Core.csproj"
+            },
             "C:\\RSB\\Infrastructure\\Infrastructure.csproj": {
               "projectPath": "C:\\RSB\\Infrastructure\\Infrastructure.csproj"
             }

@@ -36,6 +36,7 @@ export class TestErrorComponent {
       error: (err: HttpErrorResponse) => console.error('401 error:', err)
     });
   }
+  
 
   get500Error() {
     this.http.get(this.baseUrl + 'buggy/internalerror').subscribe({

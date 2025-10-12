@@ -33,6 +33,9 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         case 401:
           snackbar.error(message || 'Unauthorized');
           break;
+        case 403:
+          snackbar.error(message || 'Forbidden');
+          break;
 
         case 404:
           router.navigateByUrl('/not-found');

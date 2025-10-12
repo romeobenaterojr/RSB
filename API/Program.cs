@@ -4,6 +4,7 @@ using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 
@@ -20,18 +21,25 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ICouponService, CouponService>();
 
+// -------------------- CORS --------------------
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials();
+        policy.WithOrigins(
+                "http://localhost:4200",
+                "https://localhost:4200",
+                "https://rsb-byh9c2b8ech9ath8.japanwest-01.azurewebsites.net"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
     });
 });
 
+// -------------------- Redis --------------------
 builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
 {
     var connString = builder.Configuration.GetConnectionString("Redis")
@@ -43,11 +51,14 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
 
 builder.Services.AddSingleton<ICartService, CartService>();
 
-// Identity + EF
+// -------------------- Identity + EF --------------------
 builder.Services.AddIdentityApiEndpoints<AppUser>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<StoreContext>();
 
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+
+// -------------------- SignalR --------------------
 builder.Services.AddSignalR();
 
 // -------------------- Build App --------------------
@@ -56,19 +67,18 @@ var app = builder.Build();
 // -------------------- Middleware --------------------
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 app.UseRouting();
 app.UseCors("CorsPolicy");
-
-// ✅ Enable authentication & authorization
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseDefaultFiles();
-app.UseStaticFiles();
 
 // -------------------- Endpoints --------------------
 app.MapControllers();
 app.MapGroup("api").MapIdentityApi<AppUser>();
 app.MapHub<NotificationHub>("/hub/notifications");
+
+// ✅ Serve Angular SPA (fallback to index.html)
 app.MapFallbackToController("Index", "Fallback");
 
 // -------------------- DB Migration + Seeding --------------------
@@ -77,9 +87,11 @@ try
     using var scope = app.Services.CreateScope();
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<StoreContext>();
+    var userManager = services.GetRequiredService<UserManager<AppUser>>();
+   // var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
     await context.Database.MigrateAsync();
-    await StoreContextSeed.SeedAsync(context);
+    await StoreContextSeed.SeedAsync(context, userManager);
 }
 catch (Exception ex)
 {

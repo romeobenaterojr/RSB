@@ -1,3 +1,5 @@
+C:\RSB\Infrastructure\bin\Debug\net8.0\Data\SeedData\delivery.json
+C:\RSB\Infrastructure\bin\Debug\net8.0\Data\SeedData\products.json
 C:\RSB\Infrastructure\bin\Debug\net8.0\Infrastructure.deps.json
 C:\RSB\Infrastructure\bin\Debug\net8.0\Infrastructure.dll
 C:\RSB\Infrastructure\bin\Debug\net8.0\Infrastructure.pdb
@@ -8,11 +10,9 @@ C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.GeneratedMSBuildEditorConf
 C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.AssemblyInfoInputs.cache
 C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.AssemblyInfo.cs
 C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.csproj.CoreCompileInputs.cache
+C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json
 C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastr.15EFFBFE.Up2Date
 C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.dll
 C:\RSB\Infrastructure\obj\Debug\net8.0\refint\Infrastructure.dll
 C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 C:\RSB\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
-C:\RSB\Infrastructure\bin\Debug\net8.0\Data\SeedData\delivery.json
-C:\RSB\Infrastructure\bin\Debug\net8.0\Data\SeedData\products.json
-C:\RSB\Infrastructure\obj\Debug\net8.0\Infrastructure.sourcelink.json

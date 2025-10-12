@@ -38,6 +38,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\RSB\\Core\\Core.csproj": {
+                "projectPath": "C:\\RSB\\Core\\Core.csproj"
+              },
               "C:\\RSB\\Infrastructure\\Infrastructure.csproj": {
                 "projectPath": "C:\\RSB\\Infrastructure\\Infrastructure.csproj"
               }

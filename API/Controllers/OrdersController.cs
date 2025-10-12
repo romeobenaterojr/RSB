@@ -92,6 +92,7 @@ public class OrdersController(
             DeliveryMethod = deliveryMethod,
             ShippingAddress = orderDto.ShippingAddress,
             Subtotal = subtotal,
+            Discount = orderDto.Discount,
             PaymentSummary = orderDto.PaymentSummary,
             PaymentIntentId = cart.PaymentIntentId,
             BuyerEmail = email,

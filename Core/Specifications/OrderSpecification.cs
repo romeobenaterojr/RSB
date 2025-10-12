@@ -6,7 +6,7 @@ namespace Core.Specifications
 {
     public class OrderSpecification : BaseSpecification<Order>
     {
-        // Single private ctor that sets common includes
+
         private OrderSpecification(Expression<Func<Order, bool>> criteria)
             : base(criteria)
         {
@@ -14,7 +14,6 @@ namespace Core.Specifications
             AddInclude(x => x.DeliveryMethod);
         }
 
-        // Find all orders for a buyer (with ordering)
         public static OrderSpecification ForBuyer(string email)
         {
             var spec = new OrderSpecification(x => x.BuyerEmail == email);
@@ -22,16 +21,38 @@ namespace Core.Specifications
             return spec;
         }
 
-        // Find a specific order for a buyer by id
+
         public static OrderSpecification ForBuyerOrder(string email, int id)
         {
             return new OrderSpecification(x => x.BuyerEmail == email && x.Id == id);
         }
 
-        // Find order by PaymentIntentId
+
         public static OrderSpecification ForPaymentIntent(string paymentIntentId)
         {
             return new OrderSpecification(x => x.PaymentIntentId == paymentIntentId);
+        }
+
+        public OrderSpecification(OrderSpecParams specParams) : base(x =>
+            string.IsNullOrEmpty(specParams.Status) || x.Status == ParseStatus(specParams.Status))
+        {
+            AddInclude(x => x.OrderItems);
+            AddInclude(x => x.DeliveryMethod);
+            ApplyPaging(specParams.PageSize * (specParams.PageIndex - 1), specParams.PageSize);
+            AddOrderbyDescending(x => x.OrderDate);
+        }
+     
+        public OrderSpecification(int id) : base(x => x.Id ==id)
+        {
+            AddInclude(x => x.OrderItems);
+            AddInclude(x => x.DeliveryMethod);
+        }
+
+
+        private static OrderStatus? ParseStatus(string Status)
+        {
+            if (Enum.TryParse<OrderStatus>(Status, true, out var result)) return result;
+            return null;
         }
     }
 }

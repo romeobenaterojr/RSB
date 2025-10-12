@@ -1,0 +1,74 @@
+name: Build and deploy ASP.Net Core app to Azure Web App - rsb
+
+on:
+  push:
+    branches:
+      - RAB
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli@20
+
+      - name: Install deps and build Angular app
+        run: |
+          cd client
+          npm install
+          ng build --configuration production
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
+      - name: Publish .NET app
+        run: dotnet publish -c Release -o ./publish
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: .net-app
+          path: ./publish
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          name: .net-app
+      
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_56C6EC9EAE8940FEBAB0B39F107D6487 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B4F7AA4D1FF643978DDE8226C6D92470 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_B683CC23DBA24E23B6C147C983237B70 }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'rsb'
+          slot-name: 'Production'
+          package: .

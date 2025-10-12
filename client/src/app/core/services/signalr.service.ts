@@ -8,29 +8,35 @@ import { environment } from '../../../environments/environment';
 export class SignalrService {
   private hubConnection!: signalR.HubConnection;
 
-  // BehaviorSubject to store the current order
+  // Holds the latest order received
   private orderSource = new BehaviorSubject<Order | null>(null);
-
-  // Expose as Observable for components
   public order$: Observable<Order | null> = this.orderSource.asObservable();
 
   createHubConnection(email?: string) {
-    // 👇 build hub URL using environment
-    let url = `${environment.apiUrl}${environment.hubUrl}`;
+    // ✅ Use your local SignalR hub URL from environment
+    let hubUrl = environment.hubUrl;
     if (email) {
-      url += `?email=${encodeURIComponent(email)}`;
+      hubUrl += `?email=${encodeURIComponent(email)}`;
     }
 
+    console.log(`🔗 Connecting to SignalR hub → ${hubUrl}`);
+
+    // ✅ Configure SignalR connection for local development
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(url)
+      .withUrl(hubUrl, {
+        withCredentials: true, // Allow cookies/credentials when running locally
+      })
       .withAutomaticReconnect()
+      .configureLogging(signalR.LogLevel.Information)
       .build();
 
+    // ✅ Start connection
     this.hubConnection
       .start()
-      .then(() => console.log(`✅ SignalR connected → ${url}`))
+      .then(() => console.log(`✅ Connected to SignalR hub at ${hubUrl}`))
       .catch(err => console.error('❌ SignalR connection error:', err));
 
+    // ✅ Listen for "OrderCompleteNotification"
     this.hubConnection.on('OrderCompleteNotification', (order: Order) => {
       console.log('📦 OrderCompleteNotification received:', order);
       this.orderSource.next(order);
@@ -39,8 +45,10 @@ export class SignalrService {
 
   stopHubConnection() {
     if (this.hubConnection) {
-      this.hubConnection.stop();
-      console.log('🛑 SignalR disconnected');
+      this.hubConnection
+        .stop()
+        .then(() => console.log('🛑 SignalR connection stopped'))
+        .catch(err => console.error('⚠️ Error stopping SignalR:', err));
     }
   }
 
